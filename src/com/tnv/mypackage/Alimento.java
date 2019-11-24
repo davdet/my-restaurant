@@ -125,7 +125,11 @@ public abstract class Alimento {
 	}
 	
 	//stampa i dati di un alimento a video
-	public abstract void stampaAlimento();
+	public void stampaAlimento() {
+		System.out.println(this.getNome() + " - " + this.getPrezzo() + "€");
+		System.out.println("Adatto a vegani: " + (this.getVegano() ? "sì" : "no"));
+		System.out.println("Adatto a vegetariani: " + (this.getVegetariano() ? "sì" : "no"));
+	}
 	
 	//stampa l'elenco degli alimenti (sia bevande che cibi)
 	public static void stampaElencoAlimenti(ArrayList<Alimento> alimenti) {

@@ -72,11 +72,9 @@ public class Cibo extends Alimento{
 	
 	//stampa i dati di un cibo a video
 	public void stampaAlimento() {
-		System.out.println(this.getNome() + " - " + this.getPrezzo() + "€");
+		super.stampaAlimento();
 		System.out.println("Tipologia: " + this.getTipoPortata().getNome().toUpperCase());
 		System.out.println("Cottura: " + this.getTipoCottura().getNome().toUpperCase());
-		System.out.println("Adatto a vegani: " + this.getVegano());
-		System.out.println("Adatto a vegetariani: " + this.getVegetariano());
 		Alimento.stampaAllergeni(this.getStringaAllergeni(getElencoAllergeni())); //
 	}
 	

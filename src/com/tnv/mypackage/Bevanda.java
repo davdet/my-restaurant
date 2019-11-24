@@ -50,12 +50,10 @@ public class Bevanda extends Alimento{
 	
 	
 	//stampa i dati di una bevanda a video
-	public void stampaAlimento() {		
-		System.out.println(this.getNome() + " - " + this.getPrezzo() + "€");
+	public void stampaAlimento() {
+		super.stampaAlimento();
 		System.out.println("Tipologia: " + this.getTipo().getNome().toUpperCase());
-		System.out.println("Alcolico: " + this.getAlcolico());
-		System.out.println("Adatto a vegani: " + this.getVegano());
-		System.out.println("Adatto a vegetariani: " + this.getVegetariano());
+		System.out.println("Alcolico: " + (this.getAlcolico() ? "sì" : "no"));
 		Alimento.stampaAllergeni(this.getStringaAllergeni(getElencoAllergeni()));
 	}
 	
