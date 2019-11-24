@@ -80,17 +80,6 @@ public abstract class Alimento {
 	public ArrayList<Allergene> getElencoAllergeni() {
 		return elencoAllergeni;
 	}
-	
-	//Trasforma l'array list degli allergeni in una stringa attingendo dalla proprietà nome della enum Allergene
-	public String getStringaAllergeni(ArrayList<Allergene> elencoAllergeni) {
-		ArrayList<String> allergeni = new ArrayList<String>();
-		
-		for(Allergene item: elencoAllergeni) {
-			allergeni.add(item.getNome());
-		}
-		
-		return allergeni.toString().replace("[", "").replace("]", ""); //rimpiazza le parentesi quadre con un carattere vuoto
-	}
 
 	public void setPrezzo(Float prezzo) {
 		this.prezzo = prezzo;
@@ -110,6 +99,17 @@ public abstract class Alimento {
 
 	public void setElencoAllergeni(ArrayList<Allergene> elencoAllergeni) {
 		this.elencoAllergeni = elencoAllergeni;
+	}
+	
+	//Trasforma l'array list degli allergeni in una stringa attingendo dalla proprietà nome della enum Allergene
+	public String getStringaAllergeni(ArrayList<Allergene> elencoAllergeni) {
+		ArrayList<String> allergeni = new ArrayList<String>();
+		
+		for(Allergene item: elencoAllergeni) {
+			allergeni.add(item.getNome());
+		}
+		
+		return allergeni.toString().replace("[", "").replace("]", ""); //rimpiazza le parentesi quadre con un carattere vuoto
 	}
 	
 	//aggiunge i cibi all'array list degli alimenti
@@ -141,6 +141,12 @@ public abstract class Alimento {
 	//stampa la lista degli allergeni
 	public static void stampaAllergeni(String allergeni) {
 		System.out.println("Allergeni: " + (allergeni.isEmpty() ? "--" : allergeni) + "\n"); // se la stringa è vuota stampa "--", altrimenti il suo contenuto
+	}
+	
+	//restituisce un alimento (cibo o bevanda) random
+	public static Alimento getRandomAlimento() {
+		//return Cibo.getRandomCibo();
+		return Bevanda.getRandomBevanda();
 	}
 	
 }

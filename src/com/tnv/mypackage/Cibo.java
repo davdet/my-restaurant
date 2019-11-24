@@ -20,6 +20,7 @@ public class Cibo extends Alimento{
 			return nome;
 		}
 	}
+	
 	public enum Cottura{
 		BASSA("Bassa"),
 		MEDIA("Media"),
@@ -84,6 +85,7 @@ public class Cibo extends Alimento{
 			item.stampaAlimento();
 	}
 	
+	//restituisce un cibo random
 	public static Cibo getRandomCibo() {
 		return new Cibo(10F, "Spaghetti alla carbonara", false, false, Alimento.setAllergeni(Allergene.GLUTINE, Allergene.UOVA_E_DERIVATI), Portata.PRIMO);
 	}

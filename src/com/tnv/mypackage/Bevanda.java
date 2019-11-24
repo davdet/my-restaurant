@@ -63,8 +63,9 @@ public class Bevanda extends Alimento{
 			item.stampaAlimento();
 	}
 	
+	//restituisce una bevanda random
 	public static Bevanda getRandomBevanda() {
-		return new Bevanda(7F, "Stout (0,4l)", true, true, Alimento.setAllergeni(Allergene.GLUTINE), true, Tipo.BIRRA);
+		return new Bevanda(7F, "Stout (0,5l)", true, true, Alimento.setAllergeni(Allergene.GLUTINE), true, Tipo.BIRRA);
 	}
 	
 }
