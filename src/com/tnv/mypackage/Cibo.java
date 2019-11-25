@@ -1,8 +1,13 @@
 package com.tnv.mypackage;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Cibo extends Alimento{
+	
 	public enum Portata{
 		ANTIPASTO("Antipasto"),
 		PRIMO("Primo"),
@@ -74,9 +79,9 @@ public class Cibo extends Alimento{
 	//stampa i dati di un cibo a video
 	public void stampaAlimento() {
 		super.stampaAlimento();
-		System.out.println("Tipologia: " + this.getTipoPortata().getNome().toUpperCase());
-		System.out.println("Cottura: " + this.getTipoCottura().getNome().toUpperCase());
-		Alimento.stampaAllergeni(this.getStringaAllergeni(getElencoAllergeni())); //
+		System.out.println("Tipologia: " + getTipoPortata().getNome().toUpperCase());
+		System.out.println("Cottura: " + getTipoCottura().getNome().toUpperCase());
+		Alimento.stampaAllergeni(Alimento.getStringaAllergeni(getElencoAllergeni())); //
 	}
 	
 	//stampa l'elenco dei cibi
@@ -88,6 +93,26 @@ public class Cibo extends Alimento{
 	//restituisce un cibo random
 	public static Cibo getRandomCibo() {
 		return new Cibo(10F, "Spaghetti alla carbonara", false, false, Alimento.setAllergeni(Allergene.GLUTINE, Allergene.UOVA_E_DERIVATI), Portata.PRIMO);
+	}
+	
+	public static void salvaAlimentoSuFile(Cibo cibo) {
+		String path = "alimento.txt";
+		String allergeni = Alimento.getStringaAllergeni(cibo.getElencoAllergeni());
+		try {
+			File file = new File(path);
+			FileWriter fw = new FileWriter(file, true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(cibo.getNome() + " - " + cibo.getPrezzo() + "€\n");
+			bw.write("Adatto a vegani: " + (cibo.getVegano() ? "sì\n" : "no\n"));
+			bw.write("Adatto a vegetariani: " + (cibo.getVegetariano() ? "sì\n" : "no\n"));
+			bw.write("Tipologia: " + cibo.getTipoPortata().getNome().toUpperCase() + "\n");
+			bw.write("Cottura: " + cibo.getTipoCottura().getNome().toUpperCase() + "\n");
+			bw.write("Allergeni: " + (allergeni.isEmpty() ? "--" : allergeni) + "\n");
+			bw.flush();
+			bw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

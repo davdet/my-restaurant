@@ -52,9 +52,9 @@ public class Bevanda extends Alimento{
 	//stampa i dati di una bevanda a video
 	public void stampaAlimento() {
 		super.stampaAlimento();
-		System.out.println("Tipologia: " + this.getTipo().getNome().toUpperCase());
-		System.out.println("Alcolico: " + (this.getAlcolico() ? "sì" : "no"));
-		Alimento.stampaAllergeni(this.getStringaAllergeni(getElencoAllergeni()));
+		System.out.println("Tipologia: " + getTipo().getNome().toUpperCase());
+		System.out.println("Alcolico: " + (getAlcolico() ? "sì" : "no"));
+		Alimento.stampaAllergeni(Alimento.getStringaAllergeni(getElencoAllergeni()));
 	}
 	
 	//stampa l'elenco delle bevande

@@ -102,7 +102,7 @@ public abstract class Alimento {
 	}
 	
 	//Trasforma l'array list degli allergeni in una stringa attingendo dalla proprietà nome della enum Allergene
-	public String getStringaAllergeni(ArrayList<Allergene> elencoAllergeni) {
+	public static String getStringaAllergeni(ArrayList<Allergene> elencoAllergeni) {
 		ArrayList<String> allergeni = new ArrayList<String>();
 		
 		for(Allergene item: elencoAllergeni) {
@@ -140,13 +140,22 @@ public abstract class Alimento {
 	
 	//stampa la lista degli allergeni
 	public static void stampaAllergeni(String allergeni) {
-		System.out.println("Allergeni: " + (allergeni.isEmpty() ? "--" : allergeni) + "\n"); // se la stringa è vuota stampa "--", altrimenti il suo contenuto
+		System.out.println("Allergeni: " + (allergeni.isEmpty() ? "--" : allergeni) + "\n"); //se la stringa è vuota stampa "--", altrimenti il suo contenuto
 	}
 	
 	//restituisce un alimento (cibo o bevanda) random
 	public static Alimento getRandomAlimento() {
-		//return Cibo.getRandomCibo();
-		return Bevanda.getRandomBevanda();
+		return Cibo.getRandomCibo();
+		//return Bevanda.getRandomBevanda();
+	}
+	
+	//restituisce un elenco di allergeni random
+	public static ArrayList<Allergene> getRandomAllergeni() {		
+		return Alimento.setAllergeni(Allergene.ANIDRIDE_SOLFOROSA_E_SOLFITI, Allergene.GLUTINE);
+	}
+	
+	public static void salvaAlimentoSuFile() {
+		
 	}
 	
 }
