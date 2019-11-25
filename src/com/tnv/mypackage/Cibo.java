@@ -95,8 +95,9 @@ public class Cibo extends Alimento{
 		return new Cibo(10F, "Spaghetti alla carbonara", false, false, Alimento.setAllergeni(Allergene.GLUTINE, Allergene.UOVA_E_DERIVATI), Portata.PRIMO);
 	}
 	
+	//salva i dati di un cibo sul file alimenti.txt
 	public static void salvaAlimentoSuFile(Cibo cibo) {
-		String path = "alimento.txt";
+		String path = "alimenti.txt";
 		String allergeni = Alimento.getStringaAllergeni(cibo.getElencoAllergeni());
 		try {
 			File file = new File(path);
@@ -112,6 +113,13 @@ public class Cibo extends Alimento{
 			bw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	//salva tutti i cibi presenti nell'array list nel file alimenti.txt
+	public static void salvaTuttiAlimentiSuFile(ArrayList<Cibo> cibi) {
+		for(Cibo item: cibi) {
+			Cibo.salvaAlimentoSuFile(item);
 		}
 	}
 	

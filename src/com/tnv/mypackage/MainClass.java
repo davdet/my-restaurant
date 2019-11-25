@@ -32,9 +32,8 @@ public class MainClass {
 		Alimento.aggiungiBevande(alimenti, bevande);
 		Alimento.stampaElencoAlimenti(alimenti);
 		
-		for(Cibo item: cibi) {
-			Cibo.salvaAlimentoSuFile(item);
-		}
+		Cibo.salvaTuttiAlimentiSuFile(cibi);
+		Bevanda.salvaTuttiAlimentiSuFile(bevande);
 		
 	}
 

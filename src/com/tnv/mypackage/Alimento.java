@@ -154,8 +154,8 @@ public abstract class Alimento {
 		return Alimento.setAllergeni(Allergene.ANIDRIDE_SOLFOROSA_E_SOLFITI, Allergene.GLUTINE);
 	}
 	
-	public static void salvaAlimentoSuFile() {
-		
-	}
+	public static void salvaAlimentoSuFile() {}
+	
+	public static void salvaTuttiAlimentiSuFile() {}
 	
 }
