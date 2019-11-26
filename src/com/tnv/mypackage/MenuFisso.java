@@ -24,12 +24,19 @@ public class MenuFisso {
 	}
 
 	//prende in ingresso un'array list di alimenti, estrae casualmente numeroPortate alimenti e li restituisce come array list
-	public static ArrayList<Alimento> getPiattiMenu(ArrayList<Alimento> alimenti, final int numeroPortate) {
+	/**
+	 * Estrae casualmente un numero di piatti definito dall'utente da un array list di alimenti, e li restituisce sotto
+	 * forma di array list.
+	 * @param alimenti Array list di alimenti di partenza.
+	 * @param numeroPiatti Numero di piatti da estrarre.
+	 * @return Array list di alimenti.
+	 */
+	public static ArrayList<Alimento> getPiattiMenu(ArrayList<Alimento> alimenti, final int numeroPiatti) {
 		Random rand = new Random();
 		ArrayList<Alimento> piatti = new ArrayList<Alimento>();
 		int randomChoice;
 		
-		for(int i = 0; i < numeroPortate; i++) {
+		for(int i = 0; i < numeroPiatti; i++) {
 			randomChoice = rand.nextInt(alimenti.size());
 			piatti.add(alimenti.get(randomChoice));
 		}
@@ -37,7 +44,9 @@ public class MenuFisso {
 		return piatti;
 	}
 	
-	//stampa a video il menu
+	/**
+	 * Stampa a video un oggetto di tipo MenuFisso.
+	 */
 	public void stampaMenu() {
 		System.out.println(getNomeMenu().toUpperCase());
 		System.out.println("Prezzo pieno: " + getPrezzoPieno() + "€");
@@ -45,7 +54,10 @@ public class MenuFisso {
 		Alimento.stampaElencoAlimenti(elencoPiattiMenu);
 	}
 	
-	//calcola il prezzo pieno del menu
+	/**
+	 * Calcola il prezzo del menu sommando i prezzi delle varie portate.
+	 * @return Prezzo totale (pieno).
+	 */
 	public Float getPrezzoPieno() {
 		Float totale = 0F;
 		
@@ -55,7 +67,10 @@ public class MenuFisso {
 		return totale;
 	}
 	
-	//calcola il prezzo scontato del menu
+	/**
+	 * Applica lo sconto al prezzo totale.
+	 * @return Prezzo scontato.
+	 */
 	public Float getPrezzoScontato() {
 		return getPrezzoPieno() - (getPrezzoPieno() * getScontoMenu() / 100);
 	}

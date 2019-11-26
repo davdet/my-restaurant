@@ -32,15 +32,15 @@ public abstract class Alimento {
 		}
 	}
 	
-	private Float prezzo; //Prezzo del piatto
-	private String nome; //Nome del piatto
-	private Boolean vegano; //True se il piatto è adatto ai vegani
-	private Boolean vegetariano; //True se il piatto è adatto ai vegetariani
-	private ArrayList<Allergene> elencoAllergeni = new ArrayList<Allergene>(); //Elenco degli allergeni dell'alimento
+	private Float prezzo; // prezzo del piatto
+	private String nome; // nome del piatto
+	private Boolean vegano; // true se il piatto è adatto ai vegani
+	private Boolean vegetariano; // true se il piatto è adatto ai vegetariani
+	private ArrayList<Allergene> elencoAllergeni = new ArrayList<Allergene>(); // elenco degli allergeni dell'alimento
 	
-	public Alimento() {
-		super();
-	}
+//	public Alimento() {
+//		super();
+//	}
 
 	public Alimento(Float prezzo, String nome, Boolean vegano, Boolean vegetariano,
 			ArrayList<Allergene> elencoAllergeni) {
@@ -52,7 +52,11 @@ public abstract class Alimento {
 		this.elencoAllergeni = elencoAllergeni;
 	}
 	
-	//setta gli allergeni per una singola portata (utilizzata dai costruttori di cibi e bevande)
+	/**
+	 * Riceve in ingresso uno o più allergeni e compone un array list di allergeni.
+	 * @param list Allergeni in ingresso.
+	 * @return Array list di allergeni.
+	 */
 	public static ArrayList<Allergene> setAllergeni(Allergene... list) {
 		ArrayList<Allergene> allergeni = new ArrayList<Allergene>();
 		
@@ -62,7 +66,11 @@ public abstract class Alimento {
 		return allergeni;
 	}
 	
-	//Trasforma l'array list degli allergeni in una stringa attingendo dalla proprietà nome della enum Allergene
+	/**
+	 * Trasforma un array list di allergeni in una stringa attingendo dalla proprietà nome della enum Allergene.
+	 * @param elencoAllergeni Array list di allergeni.
+	 * @return Stringa di allergeni.
+	 */
 	public static String getStringaAllergeni(ArrayList<Allergene> elencoAllergeni) {
 		ArrayList<String> allergeni = new ArrayList<String>();
 		
@@ -70,41 +78,60 @@ public abstract class Alimento {
 			allergeni.add(item.getNome());
 		}
 		
-		return allergeni.toString().replace("[", "").replace("]", ""); //rimpiazza le parentesi quadre con un carattere vuoto
+		return allergeni.toString().replace("[", "").replace("]", ""); // rimpiazza le parentesi quadre con un carattere vuoto
 	}
 	
-	//aggiunge i cibi all'array list degli alimenti
+	/**
+	 * Aggiunge gli elementi di un array list di tipo Cibo ad un array list di alimenti.
+	 * @param alimenti Array list di alimenti.
+	 * @param cibi Array list di tipo Cibo.
+	 */
 	public static void aggiungiCibi(ArrayList<Alimento> alimenti, ArrayList<Cibo> cibi) {
 		for(Cibo item: cibi)
 			alimenti.add(item);
 	}
 	
-	//aggiunge le bevande all'array list degli alimenti
+	/**
+	 * Aggiunge gli elementi di un array list di tipo Bevanda ad un array list di alimenti.
+	 * @param alimenti Array list di alimenti.
+	 * @param bevande Array list di tipo Bevanda.
+	 */
 	public static void aggiungiBevande(ArrayList<Alimento> alimenti, ArrayList<Bevanda> bevande) {
 		for(Bevanda item: bevande)
 			alimenti.add(item);
 	}
 	
-	//stampa i dati di un alimento a video
+	/**
+	 * Stampa a video i dati di un alimento. Soggetto ad override dalle classi Cibo e Bevanda.
+	 */
 	public void stampaAlimento() {
 		System.out.println(getNome() + " - " + getPrezzo() + "€");
 		System.out.println("Adatto a vegani: " + (getVegano() ? "sì" : "no"));
 		System.out.println("Adatto a vegetariani: " + (getVegetariano() ? "sì" : "no"));
 	}
 	
-	//stampa l'elenco degli alimenti (sia bevande che cibi)
+	/**
+	 * Stampa a video un array list di alimenti.
+	 * @param alimenti Array list di alimenti
+	 */
 	public static void stampaElencoAlimenti(ArrayList<Alimento> alimenti) {
 		for(Alimento item: alimenti) {
 			item.stampaAlimento();
 		}		
 	}
 	
-	//stampa la lista degli allergeni
+	/**
+	 * Stampa una stringa di allergeni o, nel caso di una stringa vuota, i caratteri "--".
+	 * @param allergeni Stringa di allergeni.
+	 */
 	public static void stampaAllergeni(String allergeni) {
-		System.out.println("Allergeni: " + (allergeni.isEmpty() ? "--" : allergeni) + "\n"); //se la stringa è vuota stampa "--", altrimenti il suo contenuto
+		System.out.println("Allergeni: " + (allergeni.isEmpty() ? "--" : allergeni) + "\n"); // se la stringa è vuota stampa "--", altrimenti il suo contenuto
 	}
 	
-	//restituisce un alimento (cibo o bevanda) random
+	/**
+	 * Restituisce un cibo o una bevanda.
+	 * @return Oggetto di tipo Cibo o Bevanda.
+	 */
 	public static Alimento getRandomAlimento() {
 		Random rand = new Random();
 		int n = rand.nextInt(2) + 1;
@@ -114,15 +141,25 @@ public abstract class Alimento {
 			return Utils.getRandomBevanda();
 	}
 	
-	public static void salvaAlimentoSuFile() {}
+	/**
+	 * Metodo astratto soggetto ad override nelle classi Cibo e Bevanda.
+	 */
+	public abstract void salvaSuFile();
 	
-	public static void salvaTuttiAlimentiSuFile() {}
-	
+	/**
+	 * Salva un array list di alimenti su un file.
+	 * @param alimenti Array list di alimenti.
+	 */
+	public static void salvaTuttoSuFile(ArrayList<Alimento> alimenti) {
+		for(Alimento item: alimenti)
+			item.salvaSuFile();
+	}
+
+	/* G/S */	
 	protected Float getPrezzo() {
 		return prezzo;
 	}
-
-	/* G/S */
+	
 	public String getNome() {
 		return nome;
 	}

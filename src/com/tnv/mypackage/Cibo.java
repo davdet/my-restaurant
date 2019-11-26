@@ -59,7 +59,10 @@ public class Cibo extends Alimento{
 		this.tipoCottura = c;
 	}
 	
-	//stampa i dati di un cibo a video
+	/**
+	 * Stampa a video i dati di un cibo. Richiama il metodo della classe padre per stampare le proprietà comuni
+	 * agli oggetti del tipo Bevanda.
+	 */
 	public void stampaAlimento() {
 		super.stampaAlimento();
 		System.out.println("Tipologia: " + getTipoPortata().getNome().toUpperCase());
@@ -67,37 +70,35 @@ public class Cibo extends Alimento{
 		Alimento.stampaAllergeni(Alimento.getStringaAllergeni(getElencoAllergeni())); //
 	}
 	
-	//stampa l'elenco dei cibi
+	/**
+	 * Stampa un array list di cibi.
+	 * @param cibi Array list di cibi.
+	 */
 	public static void stampaElencoCibi(ArrayList<Cibo> cibi) {
 		for(Cibo item: cibi)
 			item.stampaAlimento();
 	}
 	
-	//salva i dati di un cibo sul file alimenti.txt
-	public static void salvaAlimentoSuFile(Cibo cibo) {
+	/**
+	 * Salva un elemento di tipo Cibo su file.
+	 */
+	public void salvaSuFile() {
 		String path = "alimenti.txt";
-		String allergeni = Alimento.getStringaAllergeni(cibo.getElencoAllergeni());
+		String allergeni = Alimento.getStringaAllergeni(getElencoAllergeni());
 		try {
 			File file = new File(path);
 			FileWriter fw = new FileWriter(file, true);
 			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write(cibo.getNome() + " - " + cibo.getPrezzo() + "€\n");
-			bw.write("Adatto a vegani: " + (cibo.getVegano() ? "sì\n" : "no\n"));
-			bw.write("Adatto a vegetariani: " + (cibo.getVegetariano() ? "sì\n" : "no\n"));
-			bw.write("Tipologia: " + cibo.getTipoPortata().getNome().toUpperCase() + "\n");
-			bw.write("Cottura: " + cibo.getTipoCottura().getNome().toUpperCase() + "\n");
-			bw.write("Allergeni: " + (allergeni.isEmpty() ? "--" : allergeni) + "\n");
+			bw.write(getNome() + " - " + getPrezzo() + "€\n");
+			bw.write("Adatto a vegani: " + (getVegano() ? "sì\n" : "no\n"));
+			bw.write("Adatto a vegetariani: " + (getVegetariano() ? "sì\n" : "no\n"));
+			bw.write("Tipologia: " + getTipoPortata().getNome().toUpperCase() + "\n");
+			bw.write("Cottura: " + getTipoCottura().getNome().toUpperCase() + "\n");
+			bw.write("Allergeni: " + (allergeni.isEmpty() ? "--" : allergeni) + "\n\n");
 			bw.flush();
 			bw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-	}
-	
-	//salva tutti i cibi presenti nell'array list nel file alimenti.txt
-	public static void salvaTuttiAlimentiSuFile(ArrayList<Cibo> cibi) {
-		for(Cibo item: cibi) {
-			Cibo.salvaAlimentoSuFile(item);
 		}
 	}
 	

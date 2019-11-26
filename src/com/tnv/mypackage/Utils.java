@@ -10,7 +10,10 @@ import com.tnv.mypackage.Cibo.Portata;
 
 public class Utils {
 
-	//restituisce una bevanda random
+	/**
+	 * Genera una bevanda random.
+	 * @return Oggetto di tipo Bevanda.
+	 */
 	public static Bevanda getRandomBevanda() {
 		Random rand = new Random();
 		ArrayList<String> nomi = new ArrayList<String>();
@@ -31,7 +34,10 @@ public class Utils {
 							Utils.getRandomTipo());
 	}
 	
-	//restituisce un cibo random
+	/**
+	 * Genera un cibo random.
+	 * @return Oggetto di tipo Cibo.
+	 */
 	public static Cibo getRandomCibo() {
 		Random rand = new Random();
 		ArrayList<String> nomi = new ArrayList<String>();
@@ -52,7 +58,10 @@ public class Utils {
 				Utils.getRandomCottura());
 	}
 	
-	//restituisce una lista random di allergeni
+	/**
+	 * Genera un array list di allergeni random.
+	 * @return Array list di allergeni.
+	 */
 	public static ArrayList<Allergene> getRandomAllergeni() {
 		Random rand = new Random();
 		int n = rand.nextInt(Allergene.values().length/4);
@@ -67,19 +76,28 @@ public class Utils {
 		return allergeni;
 	}
 	
-	//restituisce un valore random di tipo Portata
+	/**
+	 * Genera un elemento ti tipo Portata random.
+	 * @return Elemento di tipo Portata.
+	 */
 	public static Portata getRandomPortata() {
 		Random rand = new Random();
 		return Portata.values()[rand.nextInt(Portata.values().length)];
 	}
 	
-	//restituisce un valore random di tipo Cottura
+	/**
+	 * Genera un elemento ti tipo Cottura random.
+	 * @return Elemento di tipo Cottura.
+	 */
 	public static Cottura getRandomCottura() {
 		Random rand = new Random();
 		return Cottura.values()[rand.nextInt(Cottura.values().length)];
 	}
 	
-	//restituisce un valore random di tipo Tipo (class Bevanda)
+	/**
+	 * Genera un elemento ti tipo Tipo random.
+	 * @return Elemento di tipo Tipo.
+	 */
 	public static Tipo getRandomTipo() {
 		Random rand = new Random();
 		return Tipo.values()[rand.nextInt(Tipo.values().length)];

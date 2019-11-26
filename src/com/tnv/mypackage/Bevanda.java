@@ -36,7 +36,10 @@ public class Bevanda extends Alimento{
 		this.tipo = tipo;
 	}	
 	
-	//stampa i dati di una bevanda a video
+	/**
+	 * Stampa a video i dati di una bevanda. Richiama il metodo della classe padre per stampare le proprietà comuni
+	 * agli oggetti del tipo Cibo.
+	 */
 	public void stampaAlimento() {
 		super.stampaAlimento();
 		System.out.println("Tipologia: " + getTipo().getNome().toUpperCase());
@@ -44,36 +47,34 @@ public class Bevanda extends Alimento{
 		Alimento.stampaAllergeni(Alimento.getStringaAllergeni(getElencoAllergeni()));
 	}
 	
-	//stampa l'elenco delle bevande
+	/**
+	 * Stampa un array list di bevande.
+	 * @param bevande Array list di bevande.
+	 */
 	public static void stampaElencoBevande(ArrayList<Bevanda> bevande) {
 		for(Bevanda item: bevande)
 			item.stampaAlimento();
 	}
 	
-	//salva i dati di una bevanda sul file alimenti.txt
-	public static void salvaAlimentoSuFile(Bevanda bevanda) {
+	/**
+	 * Salva un elemento di tipo Bevanda su file.
+	 */
+	public void salvaSuFile() {
 		String path = "alimenti.txt";
-		String allergeni = Alimento.getStringaAllergeni(bevanda.getElencoAllergeni());
+		String allergeni = Alimento.getStringaAllergeni(getElencoAllergeni());
 		try {
 			File file = new File(path);
 			FileWriter fw = new FileWriter(file, true);
 			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write(bevanda.getNome() + " - " + bevanda.getPrezzo() + "€\n");
-			bw.write("Adatto a vegani: " + (bevanda.getVegano() ? "sì\n" : "no\n"));
-			bw.write("Adatto a vegetariani: " + (bevanda.getVegetariano() ? "sì\n" : "no\n"));
-			bw.write("Tipologia: " + bevanda.getTipo().getNome().toUpperCase() + "\n");
+			bw.write(getNome() + " - " + getPrezzo() + "€\n");
+			bw.write("Adatto a vegani: " + (getVegano() ? "sì\n" : "no\n"));
+			bw.write("Adatto a vegetariani: " + (getVegetariano() ? "sì\n" : "no\n"));
+			bw.write("Tipologia: " + getTipo().getNome().toUpperCase() + "\n");
 			bw.write("Allergeni: " + (allergeni.isEmpty() ? "--" : allergeni) + "\n\n");
 			bw.flush();
 			bw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-	}
-	
-	//salva tutte le bevande presenti nell'array list nel file alimenti.txt
-	public static void salvaTuttiAlimentiSuFile(ArrayList<Bevanda> bevande) {
-		for(Bevanda item: bevande) {
-			Bevanda.salvaAlimentoSuFile(item);
 		}
 	}
 	

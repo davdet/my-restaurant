@@ -24,7 +24,9 @@ public class MainClass {
 		for(int i = 0; i < 20; i++)
 			alimenti.add(Alimento.getRandomAlimento());
 		
-		MenuFisso menu = new MenuFisso("menu della casa", 20, MenuFisso.getPiattiMenu(alimenti, 4));
+		MenuFisso menu = new MenuFisso("menu della casa", 20, MenuFisso.getPiattiMenu(alimenti, 7));
+		
+		Alimento.salvaTuttoSuFile(alimenti);
 		
 		menu.stampaMenu();
 		
