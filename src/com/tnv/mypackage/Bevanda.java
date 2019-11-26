@@ -40,6 +40,7 @@ public class Bevanda extends Alimento{
 	 * Stampa a video i dati di una bevanda. Richiama il metodo della classe padre per stampare le proprietà comuni
 	 * agli oggetti del tipo Cibo.
 	 */
+	@Override
 	public void stampaAlimento() {
 		super.stampaAlimento();
 		System.out.println("Tipologia: " + getTipo().getNome().toUpperCase());
@@ -59,6 +60,7 @@ public class Bevanda extends Alimento{
 	/**
 	 * Salva un elemento di tipo Bevanda su file.
 	 */
+	@Override
 	public void salvaSuFile() {
 		String path = "alimenti.txt";
 		String allergeni = Alimento.getStringaAllergeni(getElencoAllergeni());
