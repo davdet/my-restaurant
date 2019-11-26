@@ -14,13 +14,9 @@ public class MainClass {
 	}
 	
 	public static void main(String[] args) {
-		//Creare un vettore di alimenti 
-		//Assegnare valori via codice (2 elementi: uno cibo e uno bevanda)
-		//vedi classe bevanda/cibo/alimento
 		ArrayList<Alimento> alimenti = new ArrayList<Alimento>();
 		ArrayList<Cibo> cibi = new ArrayList<Cibo>();
 		ArrayList<Bevanda> bevande = new ArrayList<Bevanda>();
-		ArrayList<Allergene> allergeni = Utils.getRandomAllergeni();
 		
 		cibi.add(new Cibo(23F, "Tagliata di manzo", false, false, Alimento.setAllergeni(), Portata.SECONDO, Cottura.BASSA));
 		bevande.add(new Bevanda(5F, "Media chiara (0,5l)", true, true, Alimento.setAllergeni(Allergene.GLUTINE), true, Tipo.BIRRA));
@@ -28,7 +24,7 @@ public class MainClass {
 		for(int i = 0; i < 20; i++)
 			alimenti.add(Alimento.getRandomAlimento());
 		
-		MenuFisso menu = new MenuFisso("Menu della casa", 50, MenuFisso.getPiattiMenu(alimenti));
+		MenuFisso menu = new MenuFisso("menu della casa", 20, MenuFisso.getPiattiMenu(alimenti, 4));
 		
 		menu.stampaMenu();
 		

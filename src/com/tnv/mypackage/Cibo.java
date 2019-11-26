@@ -58,23 +58,6 @@ public class Cibo extends Alimento{
 		this.tipoPortata = p;
 		this.tipoCottura = c;
 	}
-
-	public Portata getTipoPortata() {
-		return tipoPortata;
-	}
-
-	public Cottura getTipoCottura() {
-		return tipoCottura;
-	}
-
-	public void setTipoPortata(Portata tipoPortata) {
-		this.tipoPortata = tipoPortata;
-	}
-
-	public void setTipoCottura(Cottura tipoCottura) {
-		this.tipoCottura = tipoCottura;
-	}
-
 	
 	//stampa i dati di un cibo a video
 	public void stampaAlimento() {
@@ -116,6 +99,23 @@ public class Cibo extends Alimento{
 		for(Cibo item: cibi) {
 			Cibo.salvaAlimentoSuFile(item);
 		}
+	}
+	
+	/* G/S */
+	public Portata getTipoPortata() {
+		return tipoPortata;
+	}
+
+	public Cottura getTipoCottura() {
+		return tipoCottura;
+	}
+
+	public void setTipoPortata(Portata tipoPortata) {
+		this.tipoPortata = tipoPortata;
+	}
+
+	public void setTipoCottura(Cottura tipoCottura) {
+		this.tipoCottura = tipoCottura;
 	}
 	
 }

@@ -8,11 +8,6 @@ public class MenuFisso {
 	private String nomeMenu;
 	private int scontoMenu;
 	private ArrayList<Alimento> elencoPiattiMenu;
-	
-	public MenuFisso() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	public MenuFisso(String nomeMenu, int scontoMenu, ArrayList<Alimento> elencoPiattiMenu) {
 		super();
@@ -29,10 +24,9 @@ public class MenuFisso {
 	}
 
 	//prende in ingresso un'array list di alimenti, estrae casualmente numeroPortate alimenti e li restituisce come array list
-	public static ArrayList<Alimento> getPiattiMenu(ArrayList<Alimento> alimenti) {
+	public static ArrayList<Alimento> getPiattiMenu(ArrayList<Alimento> alimenti, final int numeroPortate) {
 		Random rand = new Random();
 		ArrayList<Alimento> piatti = new ArrayList<Alimento>();
-		final int numeroPortate = 5;
 		int randomChoice;
 		
 		for(int i = 0; i < numeroPortate; i++) {
@@ -46,8 +40,8 @@ public class MenuFisso {
 	//stampa a video il menu
 	public void stampaMenu() {
 		System.out.println(getNomeMenu().toUpperCase());
-		System.out.println("Prezzo pieno: " + getPrezzoPieno());
-		System.out.println("Prezzo scontato del " + getScontoMenu() + "%: " + getPrezzoScontato() + "\n");
+		System.out.println("Prezzo pieno: " + getPrezzoPieno() + "€");
+		System.out.println("Prezzo scontato del " + getScontoMenu() + "%: " + getPrezzoScontato() + "€\n");
 		Alimento.stampaElencoAlimenti(elencoPiattiMenu);
 	}
 	
@@ -66,6 +60,7 @@ public class MenuFisso {
 		return getPrezzoPieno() - (getPrezzoPieno() * getScontoMenu() / 100);
 	}
 	
+	/* G/S */
 	public String getNomeMenu() {
 		return nomeMenu;
 	}

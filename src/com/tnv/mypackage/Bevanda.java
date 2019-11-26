@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Bevanda extends Alimento{
 
@@ -35,24 +34,7 @@ public class Bevanda extends Alimento{
 		super(prezzo, nome, vegano, vegetariano, elencoAllergeni);
 		this.alcolico = alcolico;
 		this.tipo = tipo;
-	}
-
-	public Boolean getAlcolico() {
-		return alcolico;
-	}
-
-	public Tipo getTipo() {
-		return tipo;
-	}
-
-	public void setAlcolico(Boolean alcolico) {
-		this.alcolico = alcolico;
-	}
-
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
-	}
-	
+	}	
 	
 	//stampa i dati di una bevanda a video
 	public void stampaAlimento() {
@@ -93,5 +75,22 @@ public class Bevanda extends Alimento{
 		for(Bevanda item: bevande) {
 			Bevanda.salvaAlimentoSuFile(item);
 		}
+	}
+	
+	/* G/S */
+	public Boolean getAlcolico() {
+		return alcolico;
+	}
+
+	public Tipo getTipo() {
+		return tipo;
+	}
+
+	public void setAlcolico(Boolean alcolico) {
+		this.alcolico = alcolico;
+	}
+
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
 	}
 }

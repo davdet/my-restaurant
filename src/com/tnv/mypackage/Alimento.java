@@ -54,52 +54,12 @@ public abstract class Alimento {
 	
 	//setta gli allergeni per una singola portata (utilizzata dai costruttori di cibi e bevande)
 	public static ArrayList<Allergene> setAllergeni(Allergene... list) {
-		ArrayList<Allergene> allergeni = new ArrayList <Allergene>();
+		ArrayList<Allergene> allergeni = new ArrayList<Allergene>();
 		
 		for(Allergene item: list)
 			allergeni.add(item);
 		
 		return allergeni;
-	}
-
-	protected Float getPrezzo() {
-		return prezzo;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public Boolean getVegano() {
-		return vegano;
-	}
-
-	public Boolean getVegetariano() {
-		return vegetariano;
-	}
-
-	public ArrayList<Allergene> getElencoAllergeni() {
-		return elencoAllergeni;
-	}
-
-	public void setPrezzo(Float prezzo) {
-		this.prezzo = prezzo;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public void setVegano(Boolean vegano) {
-		this.vegano = vegano;
-	}
-
-	public void setVegetariano(Boolean vegetariano) {
-		this.vegetariano = vegetariano;
-	}
-
-	public void setElencoAllergeni(ArrayList<Allergene> elencoAllergeni) {
-		this.elencoAllergeni = elencoAllergeni;
 	}
 	
 	//Trasforma l'array list degli allergeni in una stringa attingendo dalla proprietà nome della enum Allergene
@@ -157,5 +117,46 @@ public abstract class Alimento {
 	public static void salvaAlimentoSuFile() {}
 	
 	public static void salvaTuttiAlimentiSuFile() {}
+	
+	protected Float getPrezzo() {
+		return prezzo;
+	}
+
+	/* G/S */
+	public String getNome() {
+		return nome;
+	}
+
+	public Boolean getVegano() {
+		return vegano;
+	}
+
+	public Boolean getVegetariano() {
+		return vegetariano;
+	}
+
+	public ArrayList<Allergene> getElencoAllergeni() {
+		return elencoAllergeni;
+	}
+
+	public void setPrezzo(Float prezzo) {
+		this.prezzo = prezzo;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setVegano(Boolean vegano) {
+		this.vegano = vegano;
+	}
+
+	public void setVegetariano(Boolean vegetariano) {
+		this.vegetariano = vegetariano;
+	}
+
+	public void setElencoAllergeni(ArrayList<Allergene> elencoAllergeni) {
+		this.elencoAllergeni = elencoAllergeni;
+	}
 	
 }
