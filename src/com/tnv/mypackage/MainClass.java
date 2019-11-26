@@ -20,20 +20,15 @@ public class MainClass {
 		ArrayList<Alimento> alimenti = new ArrayList<Alimento>();
 		ArrayList<Cibo> cibi = new ArrayList<Cibo>();
 		ArrayList<Bevanda> bevande = new ArrayList<Bevanda>();
-		ArrayList<Allergene> allergeni = Alimento.getRandomAllergeni();
+		ArrayList<Allergene> allergeni = Utils.getRandomAllergeni();
 		
 		cibi.add(new Cibo(23F, "Tagliata di manzo", false, false, Alimento.setAllergeni(), Portata.SECONDO, Cottura.BASSA));
 		bevande.add(new Bevanda(5F, "Media chiara (0,5l)", true, true, Alimento.setAllergeni(Allergene.GLUTINE), true, Tipo.BIRRA));
 		
-		alimenti.add(Alimento.getRandomAlimento());
+		for(int i = 0; i < 20; i++)
+			alimenti.add(Alimento.getRandomAlimento());
 		
-		Alimento.stampaAllergeni(Alimento.getStringaAllergeni(allergeni));
-		Alimento.aggiungiCibi(alimenti, cibi);
-		Alimento.aggiungiBevande(alimenti, bevande);
 		Alimento.stampaElencoAlimenti(alimenti);
-		
-		Cibo.salvaTuttiAlimentiSuFile(cibi);
-		Bevanda.salvaTuttiAlimentiSuFile(bevande);
 		
 	}
 

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Bevanda extends Alimento{
 
@@ -65,11 +66,6 @@ public class Bevanda extends Alimento{
 	public static void stampaElencoBevande(ArrayList<Bevanda> bevande) {
 		for(Bevanda item: bevande)
 			item.stampaAlimento();
-	}
-	
-	//restituisce una bevanda random
-	public static Bevanda getRandomBevanda() {
-		return new Bevanda(7F, "Stout (0,5l)", true, true, Alimento.setAllergeni(Allergene.GLUTINE), true, Tipo.BIRRA);
 	}
 	
 	//salva i dati di una bevanda sul file alimenti.txt

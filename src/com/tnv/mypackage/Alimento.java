@@ -1,6 +1,7 @@
 package com.tnv.mypackage;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public abstract class Alimento {
 
@@ -126,9 +127,9 @@ public abstract class Alimento {
 	
 	//stampa i dati di un alimento a video
 	public void stampaAlimento() {
-		System.out.println(this.getNome() + " - " + this.getPrezzo() + "€");
-		System.out.println("Adatto a vegani: " + (this.getVegano() ? "sì" : "no"));
-		System.out.println("Adatto a vegetariani: " + (this.getVegetariano() ? "sì" : "no"));
+		System.out.println(getNome() + " - " + getPrezzo() + "€");
+		System.out.println("Adatto a vegani: " + (getVegano() ? "sì" : "no"));
+		System.out.println("Adatto a vegetariani: " + (getVegetariano() ? "sì" : "no"));
 	}
 	
 	//stampa l'elenco degli alimenti (sia bevande che cibi)
@@ -145,13 +146,12 @@ public abstract class Alimento {
 	
 	//restituisce un alimento (cibo o bevanda) random
 	public static Alimento getRandomAlimento() {
-		return Cibo.getRandomCibo();
-		//return Bevanda.getRandomBevanda();
-	}
-	
-	//restituisce un elenco di allergeni random
-	public static ArrayList<Allergene> getRandomAllergeni() {		
-		return Alimento.setAllergeni(Allergene.ANIDRIDE_SOLFOROSA_E_SOLFITI, Allergene.GLUTINE);
+		Random rand = new Random();
+		int n = rand.nextInt(2) + 1;
+		if(n == 1)
+			return Utils.getRandomCibo();
+		else
+			return Utils.getRandomBevanda();
 	}
 	
 	public static void salvaAlimentoSuFile() {}

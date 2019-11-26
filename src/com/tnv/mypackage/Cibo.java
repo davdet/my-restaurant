@@ -90,11 +90,6 @@ public class Cibo extends Alimento{
 			item.stampaAlimento();
 	}
 	
-	//restituisce un cibo random
-	public static Cibo getRandomCibo() {
-		return new Cibo(10F, "Spaghetti alla carbonara", false, false, Alimento.setAllergeni(Allergene.GLUTINE, Allergene.UOVA_E_DERIVATI), Portata.PRIMO);
-	}
-	
 	//salva i dati di un cibo sul file alimenti.txt
 	public static void salvaAlimentoSuFile(Cibo cibo) {
 		String path = "alimenti.txt";
