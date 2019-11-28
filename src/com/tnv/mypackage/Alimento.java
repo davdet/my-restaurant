@@ -1,7 +1,6 @@
 package com.tnv.mypackage;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public abstract class Alimento {
 
@@ -126,19 +125,6 @@ public abstract class Alimento {
 	 */
 	public static void stampaAllergeni(String allergeni) {
 		System.out.println("Allergeni: " + (allergeni.isEmpty() ? "--" : allergeni) + "\n"); // se la stringa è vuota stampa "--", altrimenti il suo contenuto
-	}
-	
-	/**
-	 * Restituisce un cibo o una bevanda.
-	 * @return Oggetto di tipo Cibo o Bevanda.
-	 */
-	public static Alimento getRandomAlimento() {
-		Random rand = new Random();
-		int n = rand.nextInt(2) + 1;
-		if(n == 1)
-			return Utils.getRandomCibo();
-		else
-			return Utils.getRandomBevanda();
 	}
 	
 	/**

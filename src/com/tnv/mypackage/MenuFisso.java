@@ -1,49 +1,27 @@
 package com.tnv.mypackage;
 
 import java.util.ArrayList;
-import java.util.Random;
 
-public class MenuFisso {
+public class MenuFisso{
 
 	private String nomeMenu;
 	private int scontoMenu;
-	private ArrayList<Alimento> elencoPiattiMenu;
+	private ArrayList<Alimento> elencoPiattiMenuFisso = new ArrayList<Alimento>();
 
-	public MenuFisso(String nomeMenu, int scontoMenu, ArrayList<Alimento> elencoPiattiMenu) {
+	public MenuFisso(String nomeMenu, int scontoMenu, ArrayList<Alimento> elencoPiattiMenuFisso) {
 		super();
 		this.nomeMenu = nomeMenu;
 		this.scontoMenu = scontoMenu;
-		this.elencoPiattiMenu = elencoPiattiMenu;
+		this.elencoPiattiMenuFisso = elencoPiattiMenuFisso;
 	}
 	
-	public MenuFisso(ArrayList<Alimento> elencoPiattiMenu) {
+	public MenuFisso(ArrayList<Alimento> elencoPiattiMenuFisso) {
 		super();
 		this.nomeMenu = "Menù del giorno";
 		this.scontoMenu = 20;
-		this.elencoPiattiMenu = elencoPiattiMenu;
+		this.elencoPiattiMenuFisso = elencoPiattiMenuFisso;
 	}
 
-	//prende in ingresso un'array list di alimenti, estrae casualmente numeroPortate alimenti e li restituisce come array list
-	/**
-	 * Estrae casualmente un numero di piatti definito dall'utente da un array list di alimenti, e li restituisce sotto
-	 * forma di array list.
-	 * @param alimenti Array list di alimenti di partenza.
-	 * @param numeroPiatti Numero di piatti da estrarre.
-	 * @return Array list di alimenti.
-	 */
-	public static ArrayList<Alimento> getPiattiMenu(ArrayList<Alimento> alimenti, final int numeroPiatti) {
-		Random rand = new Random();
-		ArrayList<Alimento> piatti = new ArrayList<Alimento>();
-		int randomChoice;
-		
-		for(int i = 0; i < numeroPiatti; i++) {
-			randomChoice = rand.nextInt(alimenti.size());
-			piatti.add(alimenti.get(randomChoice));
-		}
-		
-		return piatti;
-	}
-	
 	/**
 	 * Stampa a video un oggetto di tipo MenuFisso.
 	 */
@@ -51,7 +29,7 @@ public class MenuFisso {
 		System.out.println(getNomeMenu().toUpperCase());
 		System.out.println("Prezzo pieno: " + getPrezzoPieno() + "€");
 		System.out.println("Prezzo scontato del " + getScontoMenu() + "%: " + getPrezzoScontato() + "€\n");
-		Alimento.stampaElencoAlimenti(elencoPiattiMenu);
+		Alimento.stampaElencoAlimenti(elencoPiattiMenuFisso);
 	}
 	
 	/**
@@ -61,7 +39,7 @@ public class MenuFisso {
 	public Float getPrezzoPieno() {
 		Float totale = 0F;
 		
-		for(Alimento item: elencoPiattiMenu)
+		for(Alimento item: elencoPiattiMenuFisso)
 			totale = totale + item.getPrezzo();
 		
 		return totale;
@@ -92,12 +70,12 @@ public class MenuFisso {
 		this.scontoMenu = scontoMenu;
 	}
 
-	public ArrayList<Alimento> getElencoPiattiMenu() {
-		return elencoPiattiMenu;
+	public ArrayList<Alimento> getElencoPiattiMenuFisso() {
+		return elencoPiattiMenuFisso;
 	}
 
-	public void setElencoPiattiMenu(ArrayList<Alimento> elencoPiattiMenu) {
-		this.elencoPiattiMenu = elencoPiattiMenu;
+	public void setElencoPiattiMenuFisso(ArrayList<Alimento> elencoPiattiMenuFisso) {
+		this.elencoPiattiMenuFisso = elencoPiattiMenuFisso;
 	}
 
 }

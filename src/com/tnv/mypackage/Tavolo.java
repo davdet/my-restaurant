@@ -10,7 +10,7 @@ public class Tavolo {
 	private int nCoperti;
 	private ArrayList<Alimento> ordine = new ArrayList<Alimento>();
 	private boolean occupato;
-	private int totaleOrdine;
+	private float totaleOrdine;
 	
 	public Tavolo() {
 		// TODO Auto-generated constructor stub
@@ -79,12 +79,67 @@ public class Tavolo {
 	public void stampaTavolo() {
 		System.out.println("Tavolo: " + getIdTavolo() + " - " + getnPosti() + " posti");
 		if (isOccupato()) {
-			System.out.println("Coperti: " + getnCoperti());
+			System.out.println("Coperti: " + getnCoperti() + "\n");
 			Alimento.stampaElencoAlimenti(getOrdine());
 			System.out.println("Totale: " + getTotaleOrdine() + "€");
 		} else {
 			System.out.println("Il tavolo è libero.");
 		}
+	}
+	
+	/**
+	 * Emette un ordine relativo ad un tavolo (ordine alla carta + menu fisso) e aggiorna il calcolo del totale per quel tavolo.
+	 * @param menu Array list dei piatti del menu.
+	 * @param menuFisso Menu fisso.
+	 * @param nMenuFissi Numero dei menu fissi da ordinare.
+	 * @param listMenu Indici dei piatti da ordinare.
+	 */
+	public void ordina(ArrayList<Alimento> menu, MenuFisso menuFisso, int nMenuFissi, int... listMenu) {
+		for(int item: listMenu) {
+			Alimento alimento = menu.get(item);
+			ordine.add(alimento);
+			setTotaleOrdine(getTotaleOrdine() + alimento.getPrezzo());
+		}
+		for(int i = 0; i < nMenuFissi; i++) {
+			ordine.addAll(menuFisso.getElencoPiattiMenuFisso());
+			setTotaleOrdine(getTotaleOrdine() + menuFisso.getPrezzoScontato());
+		}
+	}
+	
+	/**
+	 * Emette un ordine relativo ad un tavolo (solo ordine alla carta) e aggiorna il calcolo del totale per quel tavolo.
+	 * @param menu Array list dei piatti del menu.
+	 * @param listMenu Menu fisso.
+	 */
+	public void ordina(ArrayList<Alimento> menu, int... listMenu) {
+		for(int item: listMenu) {
+			Alimento alimento = menu.get(item);
+			ordine.add(alimento);
+			setTotaleOrdine(getTotaleOrdine() + alimento.getPrezzo());
+		}
+	}
+	
+	/**
+	 * Emette un ordine relativo ad un tavolo (solo ordine menu fisso) e aggiorna il calcolo del totale per quel tavolo.
+	 * @param menuFisso Menu fisso.
+	 * @param nMenuFissi Numero dei menu fissi da ordinare.
+	 */
+	public void ordina(MenuFisso menuFisso, int nMenuFissi) {
+		for(int i = 0; i < nMenuFissi; i++) {
+			ordine.addAll(menuFisso.getElencoPiattiMenuFisso());
+			setTotaleOrdine(getTotaleOrdine() + menuFisso.getPrezzoScontato());
+		}
+	}
+	
+	/**
+	 * Gestisce il pagamento mostrando il totale da pagare, azzerando il totale del conto, settando il tavolo come libero e 
+	 * rimuovendo i piatti dall'ordine di quel tavolo.
+	 */
+	public void paga() {
+		System.out.println("Totale da pagare: " + getTotaleOrdine() + "€");
+		setTotaleOrdine(0);
+		setOccupato(false);
+		getOrdine().removeAll(ordine);
 	}
 
 	/* G/S */
@@ -120,11 +175,11 @@ public class Tavolo {
 		this.occupato = occupato;
 	}
 
-	public int getTotaleOrdine() {
+	public float getTotaleOrdine() {
 		return totaleOrdine;
 	}
 
-	public void setTotaleOrdine(int prezzo) {
+	public void setTotaleOrdine(float prezzo) {
 		this.totaleOrdine = prezzo;
 	}
 

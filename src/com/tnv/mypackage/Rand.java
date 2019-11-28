@@ -8,7 +8,7 @@ import com.tnv.mypackage.Bevanda.Tipo;
 import com.tnv.mypackage.Cibo.Cottura;
 import com.tnv.mypackage.Cibo.Portata;
 
-public class Utils {
+public class Rand {
 
 	/**
 	 * Genera una bevanda random.
@@ -24,14 +24,18 @@ public class Utils {
 		nomi.add("Grappa");
 		nomi.add("Sambuca");
 		nomi.add("Acqua gassata");
+		nomi.add("Coca Cola");
+		nomi.add("Red Bull");
+		nomi.add("Birra");
+		nomi.add("Bianco della casa");
 				
 		return new Bevanda((float) rand.nextInt(91) + 10,
 							nomi.get(rand.nextInt(nomi.size())),
 							rand.nextBoolean(),
 							rand.nextBoolean(),
-							Utils.getRandomAllergeni(),
+							Rand.getRandomAllergeni(),
 							rand.nextBoolean(),
-							Utils.getRandomTipo());
+							Rand.getRandomTipo());
 	}
 	
 	/**
@@ -48,14 +52,19 @@ public class Utils {
 		nomi.add("Grigliata mista");
 		nomi.add("Capocollo alla griglia");
 		nomi.add("Abbacchio alla romana");
+		nomi.add("Cassoeula");
+		nomi.add("Salumi della casa");
+		nomi.add("Brasato al barolo");
+		nomi.add("Bollito con mostarda");
+		nomi.add("Tiramisù");
 		
 		return new Cibo((float) rand.nextInt(91) + 10,
 				nomi.get(rand.nextInt(nomi.size())),
 				rand.nextBoolean(),
 				rand.nextBoolean(),
-				Utils.getRandomAllergeni(),
-				Utils.getRandomPortata(),
-				Utils.getRandomCottura());
+				Rand.getRandomAllergeni(),
+				Rand.getRandomPortata(),
+				Rand.getRandomCottura());
 	}
 	
 	/**
@@ -101,6 +110,39 @@ public class Utils {
 	public static Tipo getRandomTipo() {
 		Random rand = new Random();
 		return Tipo.values()[rand.nextInt(Tipo.values().length)];
+	}
+
+	/**
+	 * Estrae casualmente un numero di piatti definito dall'utente da un array list di alimenti, e li restituisce sotto
+	 * forma di array list.
+	 * @param alimenti Array list di alimenti di partenza.
+	 * @param numeroPiatti Numero di piatti da estrarre.
+	 * @return Array list di alimenti.
+	 */
+	public static ArrayList<Alimento> getRandomPiatti(ArrayList<Alimento> alimenti, final int numeroPiatti) {
+		Random rand = new Random();
+		ArrayList<Alimento> piatti = new ArrayList<Alimento>();
+		int randomChoice;
+		
+		for(int i = 0; i < numeroPiatti; i++) {
+			randomChoice = rand.nextInt(alimenti.size());
+			piatti.add(alimenti.get(randomChoice));
+		}
+		
+		return piatti;
+	}
+
+	/**
+	 * Restituisce un cibo o una bevanda.
+	 * @return Oggetto di tipo Cibo o Bevanda.
+	 */
+	public static Alimento getRandomAlimento() {
+		Random rand = new Random();
+		int n = rand.nextInt(2) + 1;
+		if(n == 1)
+			return getRandomCibo();
+		else
+			return getRandomBevanda();
 	}
 
 }
