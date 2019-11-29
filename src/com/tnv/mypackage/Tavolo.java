@@ -96,15 +96,8 @@ public class Tavolo {
 	 * @param listMenu Indici dei piatti da ordinare.
 	 */
 	public void ordina(Menu menu, MenuFisso menuFisso, int nMenuFissi, int... listMenu) {
-		for(int item: listMenu) {
-			Alimento alimento = menu.menu.get(item);
-			ordine.add(alimento);
-			setTotaleOrdine(getTotaleOrdine() + alimento.getPrezzo());
-		}
-		for(int i = 0; i < nMenuFissi; i++) {
-			ordine.addAll(menuFisso.getElencoPiattiMenuFisso());
-			setTotaleOrdine(getTotaleOrdine() + menuFisso.getPrezzoScontato());
-		}
+		this.ordina(menu, listMenu);
+		this.ordina(menuFisso, nMenuFissi);
 	}
 	
 	/**
