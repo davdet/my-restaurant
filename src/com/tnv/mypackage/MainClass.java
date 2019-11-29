@@ -25,7 +25,7 @@ public class MainClass {
 		
 		Tavolo tavolo = Tavolo.getTavolo("Int2", tavoli);
 		tavolo.assegnaTavolo(2);
-		tavolo.ordina(menuFisso, 4);
+		tavolo.ordina(menu, menuFisso, 2, 1);
 		tavolo.stampaTavolo();
 		tavolo.paga();
 		

@@ -63,9 +63,10 @@ public class Tavolo {
 	 */
 	public void assegnaTavolo(int nCoperti) {
 		if (!occupato) {
-			setOccupato(true);
-			if (nCoperti <= getnPosti())
+			if (nCoperti <= getnPosti()) {
+				setOccupato(true);
 				setnCoperti(nCoperti);
+			}
 			else
 				System.out.println("Al tavolo " + getIdTavolo() + " ci stanno al massimo " + getnPosti() + " persone.");
 		} else {
@@ -94,9 +95,9 @@ public class Tavolo {
 	 * @param nMenuFissi Numero dei menu fissi da ordinare.
 	 * @param listMenu Indici dei piatti da ordinare.
 	 */
-	public void ordina(ArrayList<Alimento> menu, MenuFisso menuFisso, int nMenuFissi, int... listMenu) {
+	public void ordina(Menu menu, MenuFisso menuFisso, int nMenuFissi, int... listMenu) {
 		for(int item: listMenu) {
-			Alimento alimento = menu.get(item);
+			Alimento alimento = menu.menu.get(item);
 			ordine.add(alimento);
 			setTotaleOrdine(getTotaleOrdine() + alimento.getPrezzo());
 		}
@@ -111,9 +112,9 @@ public class Tavolo {
 	 * @param menu Array list dei piatti del menu.
 	 * @param listMenu Menu fisso.
 	 */
-	public void ordina(ArrayList<Alimento> menu, int... listMenu) {
+	public void ordina(Menu menu, int... listMenu) {
 		for(int item: listMenu) {
-			Alimento alimento = menu.get(item);
+			Alimento alimento = menu.menu.get(item);
 			ordine.add(alimento);
 			setTotaleOrdine(getTotaleOrdine() + alimento.getPrezzo());
 		}
